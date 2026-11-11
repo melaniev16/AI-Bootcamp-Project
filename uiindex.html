@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Policy Intelligence Portal | University of Idaho</title>
+<style>
+/* =========================================================
+   UNIVERSITY OF IDAHO COLORS
+========================================================= */
+:root{
+    --gold:#FFBA00;
+    --gold-dark:#C99300;
+    --black:#2F2F2F;
+    --gray:#F4F5F7;
+    --white:#FFFFFF;
+    --light-gold:#FFFBE6;
+    --success:#2E7D32;
+    --error:#A94442;
+    --shadow:0 12px 30px rgba(0,0,0,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:var(--gray);
+    color:var(--black);
+    line-height:1.5;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+.header{
+    background:
+        linear-gradient(
+            135deg,
+            #FFFBE6 0%,
+            #FFEAA7 45%,
+            #FFD32A 100%
+        );
+    border-bottom:5px solid var(--gold-dark);
+    padding:35px 50px;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 3px 15px rgba(0,0,0,.08);
+}
+.header h1{
+    font-size:2.3rem;
+    color:#735400;
+    font-weight:700;
+    letter-spacing:.5px;
+    margin-bottom:8px;
+}
+.header p{
+    font-size:15px;
+    color:#555;
+    margin-bottom:25px;
+}
+
+/* =========================================================
+   PORTAL SEARCH
+========================================================= */
+.search-container{
+    display:flex;
+    gap:12px;
+    margin-top:20px;
+}
+.search-container input{
+    flex:1;
+    padding:14px 16px;
+    border:2px solid var(--gold);
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+}
+.search-container input:focus{
+    border-color:var(--gold-dark);
+    box-shadow:0 0 10px rgba(255,186,0,.3);
+}
+.search-container button{
+    padding:14px 24px;
+    background:var(--gold);
+    color:#000;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+    transition:.3s;
+}
+.search-container button:hover{
+    background:var(--gold-dark);
+    transform:translateY(-2px);
+}
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+.container{
+    padding:30px;
+    max-width:1200px;
+    margin:auto;
+}
+.container > h2{
+    margin-bottom:20px;
+}
+
+/* =========================================================
+   BADGE
+========================================================= */
+.badge{
+    display:inline-block;
+    padding:6px 12px;
+    background:#ffefc2;
+    border:1px solid var(--gold);
+    border-radius:6px;
+    font-size:12px;
+    margin-bottom:20px;
+}
+
+/* =========================================================
+   DASHBOARD GRID
+========================================================= */
+.grid{
+    display:grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(260px, 1fr));
+    gap:20px;
+}
+.card{
+    background:var(--white);
+    padding:28px;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    border-top:5px solid var(--gold);
+    transition:.3s;
+}
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 35px rgba(0,0,0,.12);
+}
+.card h3{
+    margin-bottom:10px;
+}
+.card p{
+    font-size:14px;
+    color:#555;
+}
+.card a{
+    display:inline-block;
+    margin-top:15px;
+    padding:8px 14px;
+    background:var(--gold);
+    color:#000;
+    text-decoration:none;
+    border-radius:6px;
+    font-weight:600;
+    transition:.3s;
+}
+.card a:hover{
+    background:var(--gold-dark);
+    color:#fff;
+}
+
+/* =========================================================
+   AI POLICY ASSISTANT
+========================================================= */
+.ai-box{
+    margin-top:40px;
+    background:var(--white);
+    padding:30px;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    border-left:6px solid var(--gold);
+}
+.ai-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+    margin-bottom:10px;
+}
+.ai-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.ai-title h2{
+    margin:0;
+}
+.ai-icon{
+    font-size:28px;
+}
+.ai-status{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    padding:6px 10px;
+    border-radius:20px;
+    background:#FFF4D6;
+    border:1px solid #E5C77A;
+    font-size:12px;
+    color:#6B5319;
+    white-space:nowrap;
+}
+.ai-status-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--gold);
+}
+.ai-description{
+    color:#555;
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+/* =========================================================
+   AI QUESTION AREA
+========================================================= */
+.ai-input-area{
+    display:flex;
+    gap:10px;
+    align-items:stretch;
+}
+.ai-input{
+    flex:1;
+    min-height:55px;
+    padding:15px;
+    border:2px solid #D7D7D7;
+    border-radius:10px;
+    font-family:inherit;
+    font-size:15px;
+    resize:vertical;
+    outline:none;
+    transition:.3s;
+}
+.ai-input:focus{
+    border-color:var(--gold);
+    box-shadow:0 0 10px rgba(255,186,0,.2);
+}
+.ask-button{
+    min-width:120px;
+    padding:12px 20px;
+    background:var(--gold);
+    color:#000;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:14px;
+    transition:.3s;
+}
+.ask-button:hover{
+    background:var(--gold-dark);
+    color:#fff;
+    transform:translateY(-2px);
+}
+.ask-button:disabled{
+    background:#BEBEBE;
+    cursor:not-allowed;
+    transform:none;
+}
+
+/* =========================================================
+   AI EXAMPLE QUESTIONS
+========================================================= */
+.example-questions{
+    margin-top:15px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+}
+.example-question{
+    border:1px solid #D8D8D8;
+    background:#FAFAFA;
+    color:#555;
+    border-radius:20px;
+    padding:7px 12px;
+    font-size:12px;
+    cursor:pointer;
+    transition:.2s;
+}
+.example-question:hover{
+    border-color:var(--gold);
+    background:var(--light-gold);
+    color:var(--black);
+}
+
+/* =========================================================
+   AI RESPONSE
+========================================================= */
+.ai-response{
+    display:none;
+    margin-top:25px;
+    border-top:1px solid #E5E5E5;
+    padding-top:25px;
+}
+.ai-response.visible{
+    display:block;
+}
+.response-label{
+    font-size:13px;
+    font-weight:700;
+    color:var(--gold-dark);
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    margin-bottom:8px;
+}
+.answer-box{
+    background:#F8F8F8;
+    border-radius:10px;
+    padding:18px;
+    font-size:14px;
+    line-height:1.7;
+    white-space:pre-wrap;
+}
+.source-section{
+    margin-top:20px;
+}
+.source-list{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+.source-item{
+    background:var(--light-gold);
+    border-left:4px solid var(--gold);
+    border-radius:7px;
+    padding:10px 12px;
+    font-size:13px;
+}
+.source-name{
+    font-weight:600;
+}
+.source-page{
+    color:#666;
+    font-size:12px;
+}
+
+/* =========================================================
+   AI LOADING
+========================================================= */
+.ai-loading{
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    background:#F8F8F8;
+    border-radius:10px;
+    color:#666;
+    font-size:14px;
+}
+.ai-loading.visible{
+    display:block;
+}
+.loading-dot{
+    display:inline-block;
+    width:8px;
+    height:8px;
+    margin-right:5px;
+    border-radius:50%;
+    background:var(--gold);
+    animation:pulse 1.2s infinite;
+}
+@keyframes pulse{
+    0%,100%{
+        opacity:.3;
+    }
+    50%{
+        opacity:1;
+    }
+}
+
+/* =========================================================
+   DOCUMENT LIBRARY SECTION
+========================================================= */
+.document-library{
+    margin-top:40px;
+    background:var(--white);
+    padding:30px;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+    border-left:6px solid var(--gold);
+}
+.document-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    margin-bottom:8px;
+}
+.document-header h2{
+    margin:0;
+}
+.document-description{
+    color:#555;
+    font-size:14px;
+    margin-bottom:25px;
+}
+
+/* =========================================================
+   UPLOAD AREA (WITH DRAG & DROP)
+========================================================= */
+.upload-area{
+    border:2px dashed var(--gold);
+    border-radius:12px;
+    padding:35px 20px;
+    text-align:center;
+    background:var(--light-gold);
+    cursor:pointer;
+    transition:.3s;
+}
+.upload-area:hover, .upload-area.dragover{
+    background:#FFF2B2;
+    border-color:var(--gold-dark);
+}
+.upload-icon{
+    font-size:40px;
+    margin-bottom:10px;
+}
+.upload-area p{
+    color:#555;
+    margin-bottom:18px;
+}
+.upload-button{
+    display:inline-block;
+    padding:11px 22px;
+    background:var(--gold);
+    color:#000;
+    border-radius:8px;
+    font-weight:700;
+    transition:.3s;
+}
+.upload-button:hover{
+    background:var(--gold-dark);
+    color:#fff;
+}
+#fileInput{
+    display:none;
+}
+
+/* =========================================================
+   DOCUMENT SEARCH
+========================================================= */
+.document-search{
+    display:flex;
+    gap:10px;
+    margin-top:25px;
+    margin-bottom:20px;
+}
+.document-search input{
+    flex:1;
+    padding:12px 14px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:14px;
+    outline:none;
+}
+.document-search input:focus{
+    border-color:var(--gold);
+}
+.document-search button{
+    padding:12px 18px;
+    border:none;
+    background:var(--gold);
+    color:#000;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:700;
+}
+.document-search button:hover{
+    background:var(--gold-dark);
+    color:#fff;
+}
+
+/* =========================================================
+   DOCUMENT TOOLBAR
+========================================================= */
+.document-toolbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+.document-count{
+    font-size:13px;
+    color:#666;
+}
+.clear-button{
+    border:none;
+    background:#eee;
+    color:#555;
+    padding:7px 12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+.clear-button:hover{
+    background:#ddd;
+}
+
+/* =========================================================
+   DOCUMENT LIST
+========================================================= */
+.document-list{
+    margin-top:10px;
+}
+.document-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    padding:15px;
+    margin-bottom:10px;
+    background:#F7F7F7;
+    border-radius:10px;
+    border-left:4px solid var(--gold);
+}
+.document-info{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    min-width:0;
+}
+.document-icon{
+    font-size:28px;
+    flex-shrink:0;
+}
+.document-name{
+    font-weight:600;
+    word-break:break-word;
+}
+.document-details{
+    font-size:12px;
+    color:#777;
+    margin-top:3px;
+}
+.document-actions{
+    display:flex;
+    gap:8px;
+    flex-shrink:0;
+}
+.open-button{
+    border:none;
+    background:var(--gold);
+    color:#000;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:600;
+}
+.open-button:hover{
+    background:var(--gold-dark);
+    color:#fff;
+}
+.remove-button{
+    border:none;
+    background:#e8e8e8;
+    color:#555;
+    padding:8px 12px;
+    border-radius:6px;
+    cursor:pointer;
+}
+.remove-button:hover{
+    background:#d8d8d8;
+}
+.empty-documents{
+    color:#777;
+    font-size:14px;
+    text-align:center;
+    padding:25px;
+    border:1px solid #eee;
+    border-radius:10px;
+}
+
+/* =========================================================
+   ARCHITECTURE
+========================================================= */
+.architecture{
+    margin-top:40px;
+    background:var(--white);
+    padding:28px;
+    border-radius:16px;
+    box-shadow:var(--shadow);
+}
+.architecture h2{
+    margin-bottom:8px;
+}
+.architecture p{
+    color:#555;
+    margin-bottom:15px;
+}
+.flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+}
+.box{
+    padding:10px 15px;
+    background:var(--gold);
+    color:#000;
+    border-radius:8px;
+    font-size:13px;
+    font-weight:600;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media(max-width:700px){
+    .header{
+        padding:25px;
+    }
+    .header h1{
+        font-size:1.8rem;
+    }
+    .search-container{
+        flex-direction:column;
+    }
+    .container{
+        padding:20px;
+    }
+    .ai-header{
+        flex-direction:column;
+    }
+    .ai-input-area{
+        flex-direction:column;
+    }
+    .ask-button{
+        width:100%;
+    }
+    .document-header{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+    .document-search{
+        flex-direction:column;
+    }
+    .document-item{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+    .document-actions{
+        width:100%;
+    }
+}
+
+/* =========================================================
+   MODERN UI REFRESH — visual-only overrides (with original gold)
+   ========================================================= */
+:root{
+  --vandal-gold:#FFBA00;
+  --vandal-gold-bright:#FFD32A;
+  --vandal-black:#111214;
+  --vandal-charcoal:#1A1C20;
+  --vandal-cream:#FFFBE6;
+  --vandal-paper:#FBFAF7;
+  --vandal-ink:#17181A;
+  --vandal-muted:#70747A;
+  --vandal-line:rgba(23,24,26,.13);
+}
+body{background:var(--vandal-paper);color:var(--vandal-ink);font-family:Arial,Helvetica,sans-serif;}
+
+.header{
+    position:relative;min-height:690px;padding:28px 6vw 72px;display:flex;flex-direction:column;justify-content:flex-end;
+    overflow:hidden;background:
+      radial-gradient(circle at 84% 28%,rgba(255,186,0,.20),transparent 23%),
+      linear-gradient(115deg,#101113 0%,#17191D 55%,#25211B 100%);
+    border:0;box-shadow:none;color:#fff;
+}
+.header:before{content:"VANDAL / UNIVERSITY OF IDAHO";position:absolute;top:30px;left:6vw;font-size:11px;font-weight:800;letter-spacing:.22em;color:var(--vandal-gold-bright)}
+.header:after{content:"";position:absolute;width:520px;height:520px;right:-160px;top:115px;border:1px solid rgba(255,186,0,.34);border-radius:50%;box-shadow:0 0 0 70px rgba(255,186,0,.035),0 0 0 140px rgba(255,186,0,.025)}
+.header h1{position:relative;z-index:2;max-width:1000px;margin:0 0 10px;font-size:clamp(64px,9.5vw,150px);line-height:.86;letter-spacing:-.065em;font-weight:900;text-transform:uppercase;color:#fff;}
+.header p{position:relative;z-index:2;margin:0 0 38px;color:#D5D6D8;font-size:14px;letter-spacing:.11em;text-transform:uppercase;font-weight:700}
+.search-container{position:relative;z-index:3;display:flex;max-width:880px;padding:7px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.17);backdrop-filter:blur(12px);border-radius:0;}
+.search-container input{min-width:0;flex:1;border:0!important;background:transparent!important;color:#fff!important;padding:18px 20px!important;font-size:16px!important;outline:none!important}
+.search-container input::placeholder{color:#AEB1B5}
+.search-container button{border:0!important;background:var(--vandal-gold)!important;color:#000!important;padding:0 30px!important;font-weight:900!important;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;border-radius:0!important;}
+.search-container button:hover{background:var(--vandal-gold-bright)!important;transform:none!important}
+
+.container{max-width:none;margin:0;padding:0;background:var(--vandal-paper)}
+.badge{margin:0;padding:22px 6vw;border:0;border-bottom:1px solid var(--vandal-line);border-radius:0;background:var(--vandal-paper);color:#735400;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.container>h2{margin:0;padding:105px 6vw 42px;font-size:clamp(42px,6vw,82px);line-height:.95;letter-spacing:-.055em;text-transform:uppercase;font-weight:900}
+
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin:0;border-top:1px solid var(--vandal-line);border-left:1px solid var(--vandal-line)}
+.card{position:relative;min-height:310px;margin:0!important;padding:44px 44px 38px;border:0;border-right:1px solid var(--vandal-line);border-bottom:1px solid var(--vandal-line);border-radius:0!important;background:var(--vandal-paper);box-shadow:none!important;overflow:hidden;transition:background .3s,transform .3s}
+.card:before{content:"";position:absolute;top:0;left:0;width:100%;height:5px;background:var(--vandal-gold);transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.card:after{position:absolute;right:35px;top:25px;font-size:12px;font-weight:900;letter-spacing:.16em;color:#B4B0A7}
+.card:nth-child(1):after{content:"01"}.card:nth-child(2):after{content:"02"}.card:nth-child(3):after{content:"03"}.card:nth-child(4):after{content:"04"}.card:nth-child(5):after{content:"05"}.card:nth-child(6):after{content:"06"}
+.card:hover{background:#FFFDF2;transform:none}.card:hover:before{transform:scaleX(1)}
+.card h3{margin:54px 0 16px!important;max-width:520px;font-size:clamp(28px,3.1vw,48px)!important;line-height:.98!important;letter-spacing:-.045em!important;text-transform:uppercase;font-weight:900!important;color:var(--vandal-ink)!important}
+.card p{max-width:480px;margin:0 0 32px!important;color:#686A6E!important;font-size:15px!important;line-height:1.7!important}
+.card a{display:inline-flex;align-items:center;gap:12px;color:var(--vandal-ink)!important;text-decoration:none!important;font-size:12px!important;font-weight:900!important;letter-spacing:.14em;text-transform:uppercase}
+.card a:after{content:"↗";font-size:17px;color:var(--vandal-gold)}
+
+.ai-box{position:relative;margin:0!important;padding:100px 6vw 110px!important;border:0!important;border-radius:0!important;background:var(--vandal-black)!important;color:#fff!important;box-shadow:none!important;overflow:hidden}
+.ai-box:before{content:"AI / 01";position:absolute;top:34px;left:6vw;color:var(--vandal-gold-bright);font-size:11px;font-weight:900;letter-spacing:.2em}
+.ai-box:after{content:"";position:absolute;width:620px;height:620px;right:-240px;top:70px;border:1px solid rgba(255,186,0,.25);border-radius:50%;box-shadow:0 0 0 85px rgba(255,186,0,.025),0 0 0 170px rgba(255,186,0,.02);pointer-events:none}
+.ai-header{position:relative;z-index:2;display:flex;align-items:flex-end;justify-content:space-between;gap:30px;padding:0 0 34px;border-bottom:1px solid rgba(255,255,255,.16)}
+.ai-title{display:flex;align-items:flex-start;gap:18px}.ai-icon{display:none}
+.ai-title h2{margin:0!important;font-size:clamp(45px,7vw,96px)!important;line-height:.9!important;letter-spacing:-.06em!important;text-transform:uppercase;font-weight:900!important;color:#fff!important}
+.ai-status{display:inline-flex!important;align-items:center;gap:8px;margin:0 0 5px;padding:9px 13px;border:1px solid rgba(255,186,0,.5);border-radius:0!important;color:var(--vandal-gold-bright)!important;background:rgba(255,186,0,.08)!important;font-size:11px!important;font-weight:900!important;letter-spacing:.12em;text-transform:uppercase}
+.ai-status-dot{background:#FFBA00;box-shadow:0 0 0 3px rgba(255,186,0,.12); width:8px; height:8px; border-radius:50%;}
+.ai-description{position:relative;z-index:2;max-width:720px!important;margin:32px 0!important;color:#B8BABD!important;font-size:18px!important;line-height:1.7!important}
+.ai-input-area{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto;gap:12px;max-width:1000px}
+.ai-input{min-height:125px!important;padding:22px!important;border:1px solid rgba(255,255,255,.18)!important;border-radius:0!important;background:#1B1D21!important;color:#fff!important;font-size:17px!important;resize:vertical}
+.ai-input:focus{border-color:var(--vandal-gold)!important;outline:none!important;box-shadow:0 0 0 1px var(--vandal-gold)}
+.ask-button{align-self:stretch!important;min-width:170px;border:0!important;border-radius:0!important;background:var(--vandal-gold)!important;color:#000!important;font-size:12px!important;font-weight:900!important;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.ask-button:hover{background:var(--vandal-gold-bright)!important;}
+.example-questions{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 0!important}
+.example-questions button{border:1px solid rgba(255,255,255,.18)!important;border-radius:0!important;background:transparent!important;color:#D4D5D7!important;padding:10px 14px!important;font-size:12px!important;cursor:pointer;}
+.example-questions button:hover{border-color:var(--vandal-gold)!important;color:var(--vandal-gold-bright)!important;background:rgba(255,186,0,.08)!important}
+.ai-response,.ai-notice{position:relative;z-index:2;border-radius:0!important;background:#17191D!important;border-color:rgba(255,255,255,.12)!important;color:#D7D8DA!important}
+.answer-box{background:#FFFDEB!important;border-radius:0!important;color:#202124!important;border-left:4px solid var(--vandal-gold)!important}
+.source-list{background:#17191D!important}
+
+.document-library{margin:0!important;padding:100px 6vw 110px!important;border:0!important;border-radius:0!important;background:var(--vandal-cream)!important;box-shadow:none!important}
+.document-header{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;padding-bottom:32px;border-bottom:1px solid rgba(23,24,26,.18)}
+.document-header h2{margin:0!important;font-size:clamp(42px,6vw,78px)!important;line-height:.9!important;letter-spacing:-.055em!important;text-transform:uppercase;font-weight:900!important;color:var(--vandal-ink)!important}
+.document-count{border-radius:0!important;background:var(--vandal-ink)!important;color:#fff!important;padding:10px 13px!important;font-size:11px!important;font-weight:900!important;letter-spacing:.1em;text-transform:uppercase}
+.upload-area{margin:34px 0!important;padding:42px!important;border:1px dashed #FFBA00!important;border-radius:0!important;background:rgba(255,255,255,.4)!important}
+.upload-icon{font-size:28px!important}.upload-area h3{font-size:24px!important;text-transform:uppercase;letter-spacing:-.02em}
+.document-search{margin:0 0 18px!important}.document-search input{border-radius:0!important;border:1px solid #D5C8A3!important;background:#fff!important}
+.document-toolbar{border-radius:0!important;background:transparent!important;padding:0!important}.document-list{border-top:1px solid var(--vandal-line)!important}.document-item{border-radius:0!important;border-bottom:1px solid var(--vandal-line)!important;background:transparent!important;padding:20px 0!important}.document-item:hover{background:rgba(255,255,255,.5)!important}
+
+.architecture{margin:0!important;padding:100px 6vw 110px!important;border:0!important;border-radius:0!important;background:#15171A!important;color:#fff!important;box-shadow:none!important}
+.architecture h2{margin:0 0 55px!important;color:#fff!important;font-size:clamp(40px,6vw,76px)!important;line-height:.9!important;letter-spacing:-.055em!important;text-transform:uppercase;font-weight:900!important}
+.flow{gap:0!important;align-items:stretch!important}.box{border:1px solid rgba(255,186,0,.45)!important;border-radius:0!important;background:rgba(255,186,0,.06)!important;color:#fff!important;min-height:150px!important}.box>div:first-child{color:var(--vandal-gold-bright)!important}.flow:after{color:var(--vandal-gold)!important}
+
+@media(max-width:800px){
+ .header{min-height:610px;padding:25px 24px 45px}.header:before{left:24px}.header h1{font-size:clamp(54px,16vw,92px)}.header p{font-size:11px}.search-container{max-width:none}.search-container button{padding:0 18px!important}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+    <h1>Policy Intelligence Portal</h1>
+    <p>University of Idaho · Centralized Compliance, System Architecture &amp; Financial Reference Guide</p>
+    
+    <div class="search-container">
+        <input type="text" id="globalSearchInput" placeholder="Search policies, systems, or guidelines...">
+        <button type="button" onclick="handleGlobalSearch()">Search</button>
+    </div>
+</header>
+
+<div class="container">
+    <div class="badge">Operational Dashboard &amp; Reference Hub</div>
+    <h2>Core Policy &amp; System Directories</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Enterprise Systems</h3>
+            <p>Reference guide for Chrome River, Jaggaer, SoftDocs, Argos, and Banner implementations.</p>
+            <a href="enterprise.html">Explore Systems</a>
+        </div>
+        <div class="card">
+            <h3>Financial Policies</h3>
+            <p>Regulations covering procurement, travel, budgets, grants, and fiscal year-end guidelines.</p>
+            <a href="financial.html">View Policies</a>
+        </div>
+        <div class="card">
+            <h3>Travel Regulations</h3>
+            <p>Detailed breakdown of travel authorizations, expense reporting rules, and motorpool criteria.</p>
+            <a href="travel.html">Travel Guidelines</a>
+        </div>
+        <div class="card">
+            <h3>Frequently Asked Questions</h3>
+            <p>Quick answers regarding campus purchasing thresholds, account codes, and approvals.</p>
+            <a href="faq.html">Read FAQs</a>
+        </div>
+        <div class="card">
+            <h3>Payments &amp; Vendor Services</h3>
+            <p>Guidance on PaymentWorks vendor onboarding, stipends, honoraria, and reimbursements.</p>
+            <a href="payments.html">Payment Portal</a>
+        </div>
+        <div class="card">
+            <h3>Document Library</h3>
+            <p>Upload and manage custom policy manuals, receipt expense forms, and guidelines.</p>
+            <a href="#documentLibrarySection">Open Library</a>
+        </div>
+    </div>
+
+    <!-- AI POLICY ASSISTANT SECTION -->
+    <section class="ai-box" id="aiAssistantSection">
+        <div class="ai-header">
+            <div class="ai-title">
+                <div class="ai-icon">🤖</div>
+                <div>
+                    <h2>AI Policy Assistant</h2>
+                </div>
+            </div>
+            <div class="ai-status">
+                <span class="ai-status-dot"></span>
+                <span>Active Knowledge Base</span>
+            </div>
+        </div>
+
+        <p class="ai-description">
+            Ask questions regarding University of Idaho financial regulations, travel rules, system workflows, or vendor onboarding requirements.
+        </p>
+
+        <div class="ai-input-area">
+            <textarea class="ai-input" id="aiQueryInput" placeholder="Type any question here (e.g., What are the index numbers for these grants?)..."></textarea>
+            <button class="ask-button" id="askAiBtn" type="button" onclick="submitAiQuery()">Ask Assistant</button>
+        </div>
+
+        <div class="example-questions">
+            <button type="button" class="example-question" onclick="setQueryText('What are the index numbers for these grants?')">Grant Index Numbers</button>
+            <button type="button" class="example-question" onclick="setQueryText('What grants do we have?')">What grants do we have?</button>
+            <button type="button" class="example-question" onclick="setQueryText('What is Jaggaer?')">What is Jaggaer?</button>
+            <button type="button" class="example-question" onclick="setQueryText('What is Chrome River?')">What is Chrome River?</button>
+        </div>
+
+        <div class="ai-loading" id="aiLoadingIndicator">
+            <span class="loading-dot"></span><span class="loading-dot" style="animation-delay: 0.2s"></span><span class="loading-dot" style="animation-delay: 0.4s"></span> Querying Knowledge Base &amp; Compiling Policy Answer...
+        </div>
+
+        <div class="ai-response" id="aiResponseContainer">
+            <div class="response-label">Assistant Response</div>
+            <div class="answer-box" id="aiAnswerOutput"></div>
+
+            <div class="source-section">
+                <div class="response-label" style="font-size:11px; margin-bottom:6px;">Referenced Policies &amp; Documents</div>
+                <div class="source-list" id="aiSourceOutput"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOCUMENT LIBRARY MANAGEMENT -->
+    <section class="document-library" id="documentLibrarySection">
+        <div class="document-header">
+            <h2>Document Library</h2>
+            <div class="document-count" id="docCountBadge">3 Documents Indexed</div>
+        </div>
+        <p class="document-description">Upload or drag and drop custom policy manuals, receipt expense forms, and PDFs to instantly expand the AI assistant's search context.</p>
+
+        <div class="upload-area" id="dropZone" onclick="document.getElementById('fileInput').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
+            <div class="upload-icon">📁</div>
+            <h3>Drag &amp; Drop Documents Here</h3>
+            <p>Or click to browse files (.pdf, .docx, .txt)</p>
+            <span class="upload-button">Browse Files</span>
+            <input type="file" id="fileInput" multiple accept=".pdf,.docx,.txt" onchange="handleFileUpload(event)">
+        </div>
+
+        <div class="document-search">
+            <input type="text" id="docSearchInput" placeholder="Filter active library documents..." oninput="filterDocuments()">
+            <button type="button" onclick="filterDocuments()">Filter</button>
+        </div>
+
+        <div class="document-toolbar">
+            <span class="document-count" id="activeFilterStatus">Showing all active reference documents</span>
+            <button type="button" class="clear-button" onclick="clearAllDocuments()">Clear All</button>
+        </div>
+
+        <div class="document-list" id="documentListContainer">
+            <!-- Dynamically populated files -->
+        </div>
+    </section>
+
+    <!-- ARCHITECTURE SECTION -->
+    <section class="architecture">
+        <h2>Portal Architecture &amp; Integration Flow</h2>
+        <p>Overview of system communication layers connecting user inputs to institutional endpoints.</p>
+        <div class="flow">
+            <div class="box"><div>Layer 01</div><div>User Portal UI</div></div>
+            <div class="box"><div>Layer 02</div><div>Semantic Retrieval</div></div>
+            <div class="box"><div>Layer 03</div><div>Vector Knowledge Base</div></div>
+            <div class="box"><div>Layer 04</div><div>Authorized AI Engine</div></div>
+            <div class="box"><div>Layer 05</div><div>Verified Response</div></div>
+        </div>
+    </section>
+</div>
+
+<script>
+/* =========================================================
+   AI ASSISTANT KNOWLEDGE BASE & INTENT PROCESSING ENGINE
+   ========================================================= */
+const knowledgeBase = [
+    {
+        keywords: ["index", "index number", "index numbers", "grant index", "codes", "fund numbers"],
+        answer: "Here are the assigned index numbers for the Office of Tribal Relations grants:\n\n• USDA NIFA UI NBTS (4) (Path to Wisdom): Index 580988\n• USDA NIFA UI NBTS (5) (All My Relations): Index 580983\n• SIAM Grant (University of Idaho Tribal Nations Arts Collaborative / UI-TNAC): Index 580983 *(shared or cross-referenced)*\n• USDA NIFA UI NBTS (3) (CRIRLE - Closed Sept 2026): Index 580991\n\n*Note: The SIAM Grant currently does not have a dedicated active index set up yet as final details and budget setups are being completed.*",
+        sources: [
+            { name: "Office of Tribal Relations Financial Directory", page: "Grant Index & Account Code Reference" },
+            { name: "Banner Financial System", page: "Fund/Index Lookup Directory" }
+        ]
+    },
+    {
+        keywords: ["grants", "what grants", "office of tribal relations", "tribal relations", "path to wisdom", "all my relations", "siam", "ui-tnac", "crirle"],
+        answer: "The Office of Tribal Relations currently manages 3 active grants, with a 4th grant awaiting an official sponsor acceptance letter:\n\n1. USDA NIFA UI NBTS (4) — Known as 'Path to Wisdom'\n2. USDA NIFA UI NBTS (5) — Known as 'All My Relations'\n3. SIAM Grant — University of Idaho Tribal Nations Arts Collaborative (UI-TNAC)\n4. Pending Award — 4th grant currently awaiting sponsor acceptance letter\n\nAdditionally, a 5th grant recently closed in September 2026: USDA NIFA UI NBTS (3), also known as CRIRLE.",
+        sources: [
+            { name: "Office of Tribal Relations Directory", page: "Active & Closed Grant Portfolio 2026" },
+            { name: "Financial Policies Guide", page: "Sponsored Projects Section" }
+        ]
+    },
+    {
+        keywords: ["jaggaer", "what is jaggaer", "purchase", "requisition", "po", "order", "goods"],
+        answer: "Jaggaer is the University of Idaho's enterprise procurement system used to manage purchasing and requisitions over campus thresholds.\n\nWhen initiating a requisition in Jaggaer:\n1. Verify that the vendor is approved for procurement (so payments can be issued properly) and that their information is up to date in the system.\n2. Attach required quotes or justifications (such as sole source documentation).\n3. Route the requisition for department budget approval. Once approved, a Purchase Order (PO) is automatically generated and dispatched.",
+        sources: [
+            { name: "Enterprise Systems Guide", page: "Jaggaer Purchasing Workflow & Vendor Verification" }
+        ]
+    },
+    {
+        keywords: ["chrome river", "what is chrome river", "p-card", "pcard", "expense report"],
+        answer: "Chrome River is the enterprise application the University of Idaho uses to process travel and non-travel expenses, including purchases made on your University of Idaho P-Card.\n\nChrome River is also used to submit pre-travel authorization forms, travel reimbursement claims, and non-travel reimbursements.",
+        sources: [
+            { name: "Enterprise Systems Guide", page: "Section 01 - Chrome River Overview" },
+            { name: "Financial & Travel Policies", page: "Expense Reporting & P-Card Guidelines" }
+        ]
+    },
+    {
+        keywords: ["travel authorization", "local", "moscow", "motorpool", "cnr", "vehicle", "trip"],
+        answer: "Yes. A Travel Authorization is required if you are using a University or motorpool vehicle (such as CNR), even if you are not traveling outside of Moscow or leaving campus.\n\nThis requirement ensures that travel-related costs, fuel purchases, and motorpool charges are properly documented, encumbered, and approved in advance by your Business Specialist.",
+        sources: [
+            { name: "Travel Policies Guide", page: "Section 03 - Local & Motorpool Travel" },
+            { name: "Frequently Asked Questions", page: "FAQ Item 01" }
+        ]
+    },
+    {
+        keywords: ["paymentworks", "vendor", "onboard", "new vendor", "supplier", "payee", "non-employee"],
+        answer: "To onboard a new vendor or non-employee:\n1. The department initiates a setup request.\n2. The vendor receives an official invitation link through PaymentWorks.\n3. The vendor completes registration, tax documentation (W-9/W-8BEN), and banking details.\n4. Purchasing & Contracts reviews and approves the record before any payments or requisitions can be processed in Jaggaer.",
+        sources: [
+            { name: "Payments & Vendor Services Guide", page: "Section 02 - PaymentWorks Workflow" }
+        ]
+    },
+    {
+        keywords: ["grant", "sponsored", "project", "allowable", "funds", "budget", "federal"],
+        answer: "Grant-funded purchases and expenses must be allowable, allocable, and reasonable under the specific terms of the external sponsor agreement and Uniform Guidance (2 CFR 200).\n\nAlways verify allowability against the approved grant budget and restrictions prior to incurring expenses. Consult your Sponsored Programs Office (SPO) or Fiscal Officer if budget revisions are required.",
+        sources: [
+            { name: "Financial Policies Guide", page: "Grants & Sponsored Projects Section" },
+            { name: "Common Financial Questions", page: "Question 04" }
+        ]
+    }
+];
+
+function setQueryText(text) {
+    document.getElementById('aiQueryInput').value = text;
+    submitAiQuery();
+}
+
+function submitAiQuery() {
+    const queryInput = document.getElementById('aiQueryInput');
+    const query = queryInput.value.trim().toLowerCase();
+    const loadingEl = document.getElementById('aiLoadingIndicator');
+    const responseEl = document.getElementById('aiResponseContainer');
+    const answerOut = document.getElementById('aiAnswerOutput');
+    const sourceOut = document.getElementById('aiSourceOutput');
+
+    if (!query) {
+        alert('Please enter a question for the AI assistant.');
+        return;
+    }
+
+    loadingEl.classList.add('visible');
+    responseEl.classList.remove('visible');
+
+    setTimeout(() => {
+        loadingEl.classList.remove('visible');
+        responseEl.classList.add('visible');
+
+        let bestMatch = null;
+        let highestScore = 0;
+
+        knowledgeBase.forEach(item => {
+            let score = 0;
+            item.keywords.forEach(kw => {
+                if (query.includes(kw)) {
+                    score += 1;
+                }
+            });
+            if (score > highestScore) {
+                highestScore = score;
+                bestMatch = item;
+            }
+        });
+
+        if (bestMatch && highestScore > 0) {
+            answerOut.textContent = bestMatch.answer;
+            sourceOut.innerHTML = bestMatch.sources.map(s => `
+                <div class="source-item">
+                    <div class="source-name">${s.name}</div>
+                    <div class="source-page">${s.page}</div>
+                </div>
+            `).join('');
+        } else {
+            answerOut.textContent = "Based on your query, our AI assistant searched the indexed University of Idaho Policy Knowledge Base. While no exact keyword match was found, general institutional compliance guidelines recommend verifying your request with your department's Business Specialist or Fiscal Officer to ensure adherence to APM policies.";
+            sourceOut.innerHTML = `
+                <div class="source-item">
+                    <div class="source-name">Policy Intelligence Portal Directory</div>
+                    <div class="source-page">General Compliance Reference</div>
+                </div>
+            `;
+        }
+    }, 650);
+}
+
+/* =========================================================
+   DOCUMENT LIBRARY STATE & MANAGEMENT
+   ========================================================= */
+let documents = [
+    { name: "University Travel Policy Manual 2026.pdf", size: "2.4 MB", date: "Oct 12, 2026", type: "pdf", fileObj: null },
+    { name: "Jaggaer & Procurement Procedures.pdf", size: "1.8 MB", date: "Sep 28, 2026", type: "pdf", fileObj: null },
+    { name: "PaymentWorks Onboarding Guidelines.docx", size: "940 KB", date: "Oct 02, 2026", type: "docx", fileObj: null }
+];
+
+function renderDocuments(filterText = "") {
+    const container = document.getElementById('documentListContainer');
+    const countBadge = document.getElementById('docCountBadge');
+    const statusEl = document.getElementById('activeFilterStatus');
+
+    const filtered = documents.filter(doc => doc.name.toLowerCase().includes(filterText.toLowerCase()));
+
+    countBadge.textContent = documents.length + " Document" + (documents.length === 1 ? "" : "s") + " Indexed";
+
+    if (filtered.length === 0) {
+        container.innerHTML = '<div class="empty-documents">No matching documents found in the library.</div>';
+        statusEl.textContent = "Showing 0 of " + documents.length + " documents";
+        return;
+    }
+
+    statusEl.textContent = "Showing " + filtered.length + " of " + documents.length + " documents";
+
+    container.innerHTML = filtered.map((doc, index) => `
+        <div class="document-item">
+            <div class="document-info">
+                <div class="document-icon">` + (doc.type === 'pdf' ? '📄' : '📝') + `</div>
+                <div>
+                    <div class="document-name">` + doc.name + `</div>
+                    <div class="document-details">Size: ` + doc.size + ` · Uploaded: ` + doc.date + `</div>
+                </div>
+            </div>
+            <div class="document-actions">
+                <button type="button" class="open-button" onclick="viewDocument(` + index + `)">View</button>
+                <button type="button" class="remove-button" onclick="removeDocument(` + index + `)">Remove</button>
+            </div>
+        </div>
+    `).join('');
+}
+
+function viewDocument(index) {
+    const doc = documents[index];
+    if (doc.fileObj) {
+        // For newly uploaded files, create an object URL to open in a new tab
+        const fileUrl = URL.createObjectURL(doc.fileObj);
+        window.open(fileUrl, '_blank');
+    } else {
+        // For pre-loaded default placeholder items
+        alert("Viewing sample document: " + doc.name + "\n(Note: Upload your own PDF or document files to view them live in a new tab).");
+    }
+}
+
+function processFiles(files) {
+    if (!files || files.length === 0) return;
+
+    for (let file of files) {
+        const sizeMb = (file.size / (1024 * 1024)).toFixed(1) + ' MB';
+        const today = new Date().toLocaleDateString('en-US', { month: 'short', day: '2-digit', year: 'numeric' });
+        const ext = file.name.split('.').pop().toLowerCase();
+
+        documents.push({
+            name: file.name,
+            size: sizeMb,
+            date: today,
+            type: ext,
+            fileObj: file
+        });
+    }
+
+    renderDocuments();
+}
+
+function handleFileUpload(event) {
+    processFiles(event.target.files);
+    event.target.value = '';
+}
+
+function handleDragOver(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    document.getElementById('dropZone').classList.add('dragover');
+}
+
+function handleDragLeave(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    document.getElementById('dropZone').classList.remove('dragover');
+}
+
+function handleDrop(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    document.getElementById('dropZone').classList.remove('dragover');
+    
+    if (event.dataTransfer && event.dataTransfer.files) {
+        processFiles(event.dataTransfer.files);
+    }
+}
+
+function removeDocument(index) {
+    documents.splice(index, 1);
+    renderDocuments();
+}
+
+function clearAllDocuments() {
+    if (confirm("Are you sure you want to clear all indexed documents?")) {
+        documents = [];
+        renderDocuments();
+    }
+}
+
+function filterDocuments() {
+    const val = document.getElementById('docSearchInput').value;
+    renderDocuments(val);
+}
+
+function handleGlobalSearch() {
+    const query = document.getElementById('globalSearchInput').value.trim();
+    if (query) {
+        alert("Searching portal index");
+    } else {
+        alert('Please enter a search term.');
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderDocuments();
+});
+</script>
+
+</body>
+</html>

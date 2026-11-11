@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Policies Guide</title>
+
+<style>
+:root{
+    --gold:#FFBA00;
+    --black:#000000;
+    --silver:#808080;
+    --white:#FFFFFF;
+    --paper:#F4F3F0;
+    --ink:#111111;
+    --muted:#666666;
+    --line:#D8D6D1;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+    margin:0;
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.65;
+}
+.hero{
+    min-height:72vh;
+    background:
+      radial-gradient(circle at 86% 24%,rgba(255,186,0,.16),transparent 24%),
+      linear-gradient(135deg,#000 0%,#0b0b0b 60%,#181818 100%);
+    color:#fff;
+    padding:34px 6vw 75px;
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+.hero:after{
+    content:"";
+    position:absolute;
+    width:430px;height:430px;
+    right:-130px;bottom:-210px;
+    border:1px solid rgba(255,186,0,.35);
+    border-radius:50%;
+    box-shadow:0 0 0 75px rgba(255,186,0,.035),0 0 0 150px rgba(255,186,0,.02);
+}
+.topbar{
+    position:relative;z-index:2;
+    display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.brand,.eyebrow{
+    color:var(--gold);
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    font-size:12px;
+    font-weight:850;
+}
+.back{
+    color:#fff;text-decoration:none;
+    border:1px solid rgba(255,255,255,.35);
+    padding:10px 16px;font-size:13px;font-weight:700;
+    transition:.25s ease;
+}
+.back:hover{background:var(--gold);color:#000;border-color:var(--gold)}
+.hero-content{position:relative;z-index:2;max-width:1050px}
+.hero h1{
+    margin:0;
+    font-size:clamp(4.3rem,11vw,10rem);
+    line-height:.82;
+    letter-spacing:-.08em;
+    text-transform:uppercase;
+    max-width:1000px;
+}
+.hero-bottom{
+    margin-top:45px;
+    display:flex;
+    justify-content:space-between;
+    gap:40px;
+    align-items:flex-end;
+    max-width:1000px;
+}
+.hero p{max-width:600px;margin:0;color:#d7d7d7;font-size:18px}
+.hero-number{
+    font-size:clamp(4rem,8vw,7rem);
+    font-weight:900;
+    color:var(--gold);
+    line-height:.8;
+    opacity:.9;
+}
+.container{max-width:1200px;margin:auto;padding:90px 30px 100px}
+.section-heading{
+    display:grid;grid-template-columns:110px 1fr;gap:30px;
+    margin:0 0 36px;align-items:start;
+}
+.section-number{font-size:13px;font-weight:900;letter-spacing:.12em;color:var(--gold);padding-top:8px}
+.category-label{display:flex;align-items:center;gap:15px;margin:0 0 18px;color:var(--silver);text-transform:uppercase;letter-spacing:.15em;font-size:11px;font-weight:900}.category-label:after{content:"";height:1px;flex:1;background:var(--line)}
+.section-heading h2{
+    margin:0;font-size:clamp(2.5rem,5vw,5rem);
+    line-height:.94;letter-spacing:-.055em;text-transform:uppercase;
+}
+.intro-block{
+    background:#000;color:#fff;
+    padding:50px;margin-bottom:100px;
+    position:relative;overflow:hidden;
+}
+.intro-block:after{
+    content:"FINANCE";
+    position:absolute;right:-20px;bottom:-45px;
+    font-size:150px;font-weight:900;line-height:1;
+    color:rgba(255,186,0,.06);
+}
+.intro-block p{position:relative;z-index:1;max-width:850px;margin:0;font-size:20px;color:#d2d2d2}
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    margin-top:0;
+    margin-bottom:100px;
+}
+.card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:5px solid transparent;
+    border-radius:0;
+    padding:34px;
+    min-height:270px;
+    transition:.25s ease;
+}
+.card:hover{transform:translateY(-4px);border-left-color:var(--gold);box-shadow:0 18px 40px rgba(0,0,0,.08)}
+.card h3{
+    margin:0 0 12px;color:#111;
+    font-size:clamp(1.7rem,3vw,2.6rem);
+    line-height:1;letter-spacing:-.045em;
+}
+.card p{font-size:14px;color:#666;max-width:500px}
+.card ul{padding-left:18px;color:#444}
+.card li{margin:4px 0}
+.card:before{
+    content:"";
+    display:block;width:32px;height:4px;
+    background:var(--gold);margin-bottom:24px;
+}
+.section{
+    background:#fff;
+    padding:42px;
+    margin:0 0 100px;
+    border:1px solid var(--line);
+}
+.section > h2{
+    font-size:clamp(2.2rem,4vw,4rem);
+    line-height:.95;letter-spacing:-.05em;
+    text-transform:uppercase;margin:0 0 25px;
+}
+.section ul{padding-left:22px}
+.section li{margin:8px 0}
+.question-intro{color:#666;margin-top:-10px;margin-bottom:24px}
+.financial-questions{display:flex;flex-direction:column;gap:8px}
+.financial-question{
+    width:100%;box-sizing:border-box;
+    display:flex;justify-content:space-between;align-items:center;gap:18px;
+    padding:22px 24px;
+    border:1px solid var(--line);
+    border-left:5px solid transparent;
+    background:#fff;color:#111;text-align:left;
+    font:750 17px Inter,ui-sans-serif,system-ui,sans-serif;
+    cursor:pointer;transition:.25s ease;
+}
+.financial-question:hover{transform:translateX(4px);border-color:#c8c6c0}
+.financial-question[aria-expanded="true"]{
+    border-left-color:var(--gold);
+    box-shadow:0 12px 30px rgba(0,0,0,.07);
+}
+.question-icon{
+    flex:0 0 auto;width:34px;height:34px;
+    display:flex;align-items:center;justify-content:center;
+    background:#000;color:var(--gold);
+    border-radius:50%;font-size:21px;line-height:1;
+}
+.financial-answer{
+    margin-top:-8px;padding:25px 30px;
+    border:1px solid var(--gold);border-top:0;
+    background:#faf9f6;line-height:1.7;
+}
+.financial-answer p{margin:0 0 12px}
+.financial-answer p:last-child{margin-bottom:0}
+.payment-option{
+    margin:14px 0;padding:20px;
+    border-left:4px solid var(--gold);
+    background:#fff;border:1px solid #e2e0da;
+}
+.payment-option h4{margin:0 0 8px;color:#111;font-size:18px}
+.payment-option p{margin:0 0 10px}
+.payment-warning{
+    margin:16px 0;padding:16px 18px;
+    border-left:4px solid #000;
+    background:#fff1c7;
+}
+.payment-comparison{margin-top:18px;padding:18px;background:#e9e8e4}
+.button{
+    display:inline-block;margin-top:20px;padding:14px 22px;
+    background:var(--gold);color:#000;text-decoration:none;
+    font-weight:850;text-transform:uppercase;letter-spacing:.04em;
+    transition:.25s ease;
+}
+.button:hover{background:#000;color:#fff}
+.support{
+    background:#000;color:#fff;border:0;
+}
+.support h2{color:#fff}
+.support p{color:#aaa}
+.footer{
+    background:#000;color:#fff;padding:75px 6vw;
+    display:flex;align-items:end;justify-content:space-between;gap:30px;
+}
+.footer h2{margin:0;font-size:clamp(2.8rem,6vw,6rem);line-height:.9;letter-spacing:-.06em;text-transform:uppercase}
+.footer p{max-width:500px;color:#aaa}
+@media(max-width:760px){
+    .hero{min-height:70vh;padding:25px 24px 55px}
+    .hero h1{font-size:clamp(3.7rem,17vw,6rem)}
+    .hero-bottom{display:block}
+    .hero-number{margin-top:45px}
+    .container{padding:65px 20px 70px}
+    .section-heading{grid-template-columns:1fr;gap:8px}
+    .section-heading h2{font-size:3rem}
+    .intro-block,.section{padding:28px}
+    .grid{grid-template-columns:1fr;margin-bottom:70px}
+    .card{min-height:auto;padding:28px}
+    .financial-question{padding:20px 18px;font-size:15px}
+    .financial-answer{padding:22px 20px}
+    .footer{padding:60px 24px;display:block}
+}
+</style>
+
+</head>
+
+<body>
+
+<section class="hero">
+    <div class="topbar">
+        <div class="brand">Policy Intelligence Portal</div>
+        <a href="uiindex.html" class="back">← Back to Home</a>
+    </div>
+    <div class="hero-content">
+        <div class="eyebrow">Policy &amp; Resources / Finance</div>
+        <h1>Financial<br>Policies</h1>
+        <div class="hero-bottom">
+            <p>
+                A practical reference for purchasing, travel, payments, grants,
+                budget management, and fiscal year-end processes.
+            </p>
+            <div class="hero-number">02</div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+
+    <!-- INTRO -->
+    <section class="intro-block">
+        <div class="eyebrow">01 / Financial Operations</div>
+        <p>
+            This page provides an overview of key financial policies used across the University.
+            These policies support compliance with state, federal, and institutional requirements
+            for purchasing, travel, payments, grants, and budget management.
+        </p>
+    </section>
+
+    <!-- POLICY CARDS -->
+    <div class="section-heading">
+        <div class="section-number">02</div>
+        <div>
+            <div class="category-label">Reference Areas</div>
+            <h2>Financial Policy<br>Categories</h2>
+        </div>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Purchasing & Procurement</h3>
+            <p>Guidelines for acquiring goods and services using University funds.</p>
+            <ul>
+                <li>Purchase requisitions</li>
+                <li>Purchase orders</li>
+                <li>Competitive bidding</li>
+                <li>Sole source justification</li>
+                <li>Vendor selection</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Travel Policies</h3>
+            <p>Rules for employee, student, and guest travel on behalf of the University.</p>
+            <ul>
+                <li>Travel authorizations</li>
+                <li>Expense reports</li>
+                <li>Airfare & lodging rules</li>
+                <li>Per diem & mileage</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Accounts Payable</h3>
+            <p>Payment processing for vendors, employees, and students.</p>
+            <ul>
+                <li>Vendor payments</li>
+                <li>Invoices</li>
+                <li>Direct payments</li>
+                <li>Stipends & honoraria</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Employee Payments</h3>
+            <p>Non-salary compensation and reimbursements for employees.</p>
+            <ul>
+                <li>Awards & recognition</li>
+                <li>Supplemental pay</li>
+                <li>Taxable benefits</li>
+                <li>Reimbursements</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Student Payments</h3>
+            <p>Financial support for student participation and activities.</p>
+            <ul>
+                <li>Scholarships</li>
+                <li>Stipends</li>
+                <li>Research incentives</li>
+                <li>Participant payments</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Grants & Sponsored Projects</h3>
+            <p>Compliance rules for externally funded research projects.</p>
+            <ul>
+                <li>Allowable costs</li>
+                <li>Budget revisions</li>
+                <li>Cost sharing</li>
+                <li>Subawards</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Budget Management</h3>
+            <p>Managing and monitoring departmental funds and indexes.</p>
+            <ul>
+                <li>Index management</li>
+                <li>Budget transfers</li>
+                <li>Expense monitoring</li>
+                <li>Fiscal reporting</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>Fiscal Year-End</h3>
+            <p>Closing procedures for financial reporting and compliance.</p>
+            <ul>
+                <li>Purchase deadlines</li>
+                <li>Invoice submissions</li>
+                <li>Reconciliations</li>
+                <li>Accrual reviews</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- RESOURCES -->
+    <div class="section">
+        <div class="section-heading">
+            <div class="section-number">03</div>
+            <div>
+                <div class="category-label">Quick Reference</div>
+                <h2>Frequently Requested<br>Resources</h2>
+            </div>
+        </div>
+        <ul>
+            <li>Travel Policy Manual</li>
+            <li>Purchasing Procedures</li>
+            <li>Accounts Payable Guidelines</li>
+            <li>Grant Administration Resources</li>
+            <li>Fiscal Year-End Deadlines</li>
+            <li>PaymentWorks Information</li>
+            <li>Chart of Accounts Resources</li>
+        </ul>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div class="section">
+        <div class="section-heading">
+            <div class="section-number">04</div>
+            <div>
+                <div class="category-label">Guidance</div>
+                <h2>Common Financial<br>Questions</h2>
+            </div>
+        </div>
+
+        <p class="question-intro">
+            Click a question below to view the answer. Selecting another question
+            will automatically close the previous answer.
+        </p>
+
+        <div class="financial-questions">
+
+            <button class="financial-question" type="button"
+                    aria-expanded="false"
+                    aria-controls="financial-answer-1"
+                    onclick="toggleFinancialQuestion(1)">
+                <span>Can I purchase this item with University funds?</span>
+                <span class="question-icon" aria-hidden="true">+</span>
+            </button>
+
+            <div class="financial-answer" id="financial-answer-1" hidden>
+                <p><strong>It depends on the item and the funding source.</strong></p>
+                <p>
+                    Before making a purchase, confirm that the expense is allowable
+                    under University requirements and the applicable funding source.
+                    If you are unsure, check the applicable purchasing or financial
+                    guidance and contact your Business Specialist or Fiscal Officer
+                    before committing University funds.
+                </p>
+            </div>
+
+
+            <button class="financial-question" type="button"
+                    aria-expanded="false"
+                    aria-controls="financial-answer-2"
+                    onclick="toggleFinancialQuestion(2)">
+                <span>What account code should I use?</span>
+                <span class="question-icon" aria-hidden="true">+</span>
+            </button>
+
+            <div class="financial-answer" id="financial-answer-2" hidden>
+                <p><strong>The correct account code depends on the type of expense.</strong></p>
+                <p>
+                    Use the University's Chart of Accounts and applicable account-code
+                    guidance to identify the appropriate code. If you are uncertain,
+                    verify the code with your Business Specialist or Fiscal Officer
+                    before submitting the transaction.
+                </p>
+            </div>
+
+
+            <button class="financial-question" type="button"
+                    aria-expanded="false"
+                    aria-controls="financial-answer-3"
+                    onclick="toggleFinancialQuestion(3)">
+                <span>Does this require prior approval?</span>
+                <span class="question-icon" aria-hidden="true">+</span>
+            </button>
+
+            <div class="financial-answer" id="financial-answer-3" hidden>
+                <p><strong>Some purchases and payments require approval before the transaction occurs.</strong></p>
+                <p>
+                    Prior approval requirements depend on the type of purchase,
+                    payment, funding source, and University process being used.
+                    When in doubt, obtain the required approval before making the
+                    purchase or committing University funds.
+                </p>
+            </div>
+
+
+            <button class="financial-question" type="button"
+                    aria-expanded="false"
+                    aria-controls="financial-answer-4"
+                    onclick="toggleFinancialQuestion(4)">
+                <span>Can grant funds be used?</span>
+                <span class="question-icon" aria-hidden="true">+</span>
+            </button>
+
+            <div class="financial-answer" id="financial-answer-4" hidden>
+                <p><strong>Potentially, but the expense must be allowable under the specific grant.</strong></p>
+                <p>
+                    Grant-funded purchases and payments should be reviewed against
+                    the grant's approved purpose, applicable restrictions, and
+                    University requirements before the expense is incurred. If you
+                    are uncertain whether an expense is allowable, verify it with
+                    the appropriate grant or financial contact before proceeding.
+                </p>
+            </div>
+
+
+            <button class="financial-question" type="button"
+                    aria-expanded="false"
+                    aria-controls="financial-answer-5"
+                    onclick="toggleFinancialQuestion(5)">
+                <span>How do I pay a student or non-employee?</span>
+                <span class="question-icon" aria-hidden="true">+</span>
+            </button>
+
+            <div class="financial-answer" id="financial-answer-5" hidden>
+
+                <p>
+                    <strong>There are two common options: Jaggaer or
+                    SoftDocs / Student Resource Payment.</strong>
+                </p>
+
+                <div class="payment-option">
+                    <h4>Option 1 — Jaggaer</h4>
+                    <p>
+                        Jaggaer can be used to pay both students and
+                        non-students/non-employees. The payee must first complete
+                        the University's onboarding process, and the onboarding
+                        must be approved by Purchasing &amp; Contracts before the
+                        payment request can be processed.
+                    </p>
+                    <p>
+                        Once the payment request is processed, payment may take
+                        <strong>up to two months</strong> to reach the recipient.
+                    </p>
+                </div>
+
+                <div class="payment-option">
+                    <h4>Option 2 — SoftDocs / Student Resource Payment</h4>
+                    <p>
+                        For eligible student payments, the SoftDocs Student
+                        Resource Payment method can generally get funds to the
+                        student much more quickly.
+                    </p>
+                    <p>
+                        <strong>Important:</strong> If the student has an outstanding
+                        University balance, the payment may be applied to that
+                        balance instead of being paid directly to the student.
+                    </p>
+                </div>
+
+                <div class="payment-warning">
+                    <strong>Take note:</strong> Before using a Student Resource
+                    Payment, consider whether the student has an outstanding
+                    University balance. If they do, the funds may be applied to
+                    that balance.
+                </div>
+
+                <div class="payment-comparison">
+                    <strong>Quick comparison</strong>
+                    <ul>
+                        <li>
+                            <strong>Jaggaer:</strong> Can be used for students and
+                            non-employees; requires payee onboarding and Purchasing
+                            &amp; Contracts approval; payment can take up to two months.
+                        </li>
+                        <li>
+                            <strong>SoftDocs / Student Resource Payment:</strong>
+                            For eligible student payments; generally faster, but an
+                            outstanding University balance may absorb the payment.
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+            <button class="financial-question" type="button"
+                    aria-expanded="false"
+                    aria-controls="financial-answer-6"
+                    onclick="toggleFinancialQuestion(6)">
+                <span>Where can I find available budget?</span>
+                <span class="question-icon" aria-hidden="true">+</span>
+            </button>
+
+            <div class="financial-answer" id="financial-answer-6" hidden>
+                <p>
+                    <strong>Available index balances should be confirmed through
+                    your department's financial contact.</strong>
+                </p>
+                <p>
+                    The Policy Intelligence Portal does not display remaining
+                    index balances. Your Business Specialist or department
+                    leadership can help communicate how much funding remains
+                    available for a purchase, payment, or event.
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SUPPORT -->
+    <div class="section support">
+        <div class="section-heading">
+            <div class="section-number">05</div>
+            <div>
+                <div class="category-label">Support</div>
+                <h2>Need<br>Assistance?</h2>
+            </div>
+        </div>
+        <p>
+            Contact your Fiscal Officer, Business Specialist,
+            Procurement Services, Accounts Payable, or Sponsored Programs Office
+            for assistance.
+        </p>
+
+        <a class="button" href="uiindex.html">Back to Dashboard</a>
+    </div>
+
+</div>
+
+<script>
+/* =========================================================
+   COMMON FINANCIAL QUESTIONS — ACCORDION
+   ========================================================= */
+
+function toggleFinancialQuestion(number) {
+
+    const selectedButton = document.querySelector(
+        '[aria-controls="financial-answer-' + number + '"]'
+    );
+
+    const selectedAnswer = document.getElementById(
+        'financial-answer-' + number
+    );
+
+    if (!selectedButton || !selectedAnswer) {
+        return;
+    }
+
+    const isCurrentlyOpen =
+        selectedButton.getAttribute("aria-expanded") === "true";
+
+    // Close every question and answer first.
+    document.querySelectorAll(".financial-question").forEach(function(button) {
+
+        const answerId = button.getAttribute("aria-controls");
+        const answer = document.getElementById(answerId);
+        const icon = button.querySelector(".question-icon");
+
+        button.setAttribute("aria-expanded", "false");
+
+        if (answer) {
+            answer.hidden = true;
+        }
+
+        if (icon) {
+            icon.textContent = "+";
+        }
+    });
+
+    // If the selected question was closed, open it.
+    if (!isCurrentlyOpen) {
+
+        selectedButton.setAttribute("aria-expanded", "true");
+        selectedAnswer.hidden = false;
+
+        const selectedIcon =
+            selectedButton.querySelector(".question-icon");
+
+        if (selectedIcon) {
+            selectedIcon.textContent = "−";
+        }
+    }
+}
+</script>
+
+</body>
+</html>

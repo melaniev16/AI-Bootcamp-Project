@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payments & Vendor Services Guide | Policy Intelligence Portal</title>
+<style>
+:root{
+  --gold:#FFBA00;
+  --black:#000000;
+  --silver:#808080;
+  --white:#FFFFFF;
+  --ink:#171717;
+  --paper:#F4F3F0;
+  --line:rgba(0,0,0,.13);
+  --dark-line:rgba(255,255,255,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+a{color:inherit}
+
+/* NAV */
+.site-nav{position:absolute;z-index:10;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:26px 5vw;color:#fff;border-bottom:1px solid rgba(255,255,255,.16)}
+.brand{display:flex;align-items:center;gap:13px;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.brand-mark{width:34px;height:34px;border:2px solid var(--gold);display:grid;place-items:center;color:var(--gold);font-weight:900;font-size:14px}
+.nav-right{display:flex;align-items:center;gap:18px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.back-button{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:var(--gold);color:#000;text-decoration:none;font-weight:900;transition:.2s}
+.back-button:hover{background:#fff;transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:72vh;background:radial-gradient(circle at 78% 28%,rgba(255,186,0,.15),transparent 28%),linear-gradient(135deg,#050505 0%,#111 56%,#191919 100%);color:#fff;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:150px 5vw 75px}
+.hero:after{content:"";position:absolute;width:42vw;height:42vw;border:1px solid rgba(255,186,0,.18);right:-15vw;top:10vw;transform:rotate(18deg)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(to bottom,black,transparent)}
+.hero-content{position:relative;z-index:2;max-width:1100px}
+.kicker{color:var(--gold);font-size:12px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;margin-bottom:22px}
+.hero h1{font-size:clamp(3.5rem,8vw,8rem);line-height:.88;letter-spacing:-.07em;margin:0;max-width:1000px;text-transform:uppercase}
+.hero h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.65)}
+.hero-bottom{margin-top:45px;display:flex;justify-content:space-between;gap:40px;align-items:flex-end;max-width:1000px}
+.hero-intro{max-width:600px;font-size:18px;color:#d7d7d7}
+.hero-number{font-size:clamp(4rem,8vw,7rem);font-weight:900;color:var(--gold);line-height:.8;opacity:.9}
+
+/* CONTENT */
+.section-wrap{padding:110px 5vw}
+.section-wrap.dark{background:#050505;color:#fff}
+.section-inner{max-width:1200px;margin:auto}
+.section-label{display:flex;align-items:center;gap:15px;color:var(--gold);font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;margin-bottom:28px}
+.section-label:after{content:"";height:1px;background:currentColor;width:70px;opacity:.6}
+.section-title{font-size:clamp(2.5rem,5vw,5rem);line-height:.95;letter-spacing:-.055em;margin:0 0 28px;text-transform:uppercase;max-width:900px}
+.section-copy{max-width:720px;font-size:18px;color:#626262}
+.dark .section-copy{color:#b9b9b9}
+
+/* SYSTEMS / CATEGORIES */
+.systems{padding-top:30px}
+.system-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:55px}
+.system-card{background:var(--paper);min-height:310px;padding:36px;position:relative;transition:.25s;overflow:hidden}
+.system-card:before{content:"";position:absolute;left:0;top:0;width:0;height:5px;background:var(--gold);transition:.25s}
+.system-card:hover{background:#fff;transform:translateY(-3px);z-index:2}.system-card:hover:before{width:100%}
+.system-num{font-size:12px;font-weight:900;color:var(--silver);letter-spacing:.16em}
+.system-card h3{font-size:30px;letter-spacing:-.045em;margin:35px 0 8px;text-transform:uppercase}
+.system-card p{color:#5e5e5e;max-width:460px}
+.system-card ul{margin:22px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px;color:#333;font-size:14px}
+.system-card li:before{content:"→";color:var(--gold);font-weight:900;margin-right:8px}
+.system-tag{position:absolute;right:28px;top:30px;border:1px solid #bbb;padding:5px 8px;font-size:9px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#666}
+
+/* PAYMENTWORKS PROCESS FLOW */
+.flow{margin-top:55px;display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--dark-line);border-bottom:1px solid var(--dark-line)}
+.flow-item{min-height:220px;padding:25px 20px;border-right:1px solid var(--dark-line);position:relative}
+.flow-item:last-child{border-right:0}
+.flow-item .n{color:var(--gold);font-weight:900;font-size:12px}
+.flow-item h4{font-size:16px;margin:35px 0 10px;line-height:1.2;text-transform:uppercase}
+.flow-item p{font-size:13px;color:#aaa;margin:0}
+.flow-item:after{content:"→";position:absolute;right:10px;top:50%;color:var(--gold);font-size:20px}
+.flow-item:last-child:after{display:none}
+
+/* FAQ & TIPS LISTS */
+.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;margin-top:55px}
+.faq-box{background:#fff;padding:35px;border-radius:0;border-left:4px solid var(--gold);box-shadow:0 4px 12px rgba(0,0,0,.04)}
+.faq-box h3{font-size:22px;margin-top:0;text-transform:uppercase;letter-spacing:-.02em}
+.faq-box ul{margin:20px 0 0;padding-left:20px;color:#333}
+.faq-box li{margin-bottom:12px;font-size:15px}
+
+/* HELP */
+.help{display:grid;grid-template-columns:1.3fr .7fr;gap:70px;align-items:end}
+.help-panel{background:#000;color:#fff;padding:45px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between}
+.help-panel h3{font-size:28px;text-transform:uppercase;letter-spacing:-.03em;margin:0}
+.help-panel p{color:#aaa;max-width:560px}
+.button{display:inline-flex;align-items:center;gap:10px;width:max-content;background:var(--gold);color:#000;padding:13px 19px;text-decoration:none;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.button:hover{background:#000;color:#fff}
+
+.footer{background:#000;color:#777;padding:28px 5vw;font-size:11px;display:flex;justify-content:space-between;gap:20px;text-transform:uppercase;letter-spacing:.08em}
+.footer strong{color:#fff}
+
+@media(max-width:850px){
+  .site-nav{padding:20px}
+  .nav-right span{display:none}
+  .hero{min-height:70vh;padding:130px 6vw 55px}
+  .hero h1{font-size:clamp(3.2rem,14vw,6rem)}
+  .hero-bottom{display:block}
+  .hero-number{margin-top:45px}
+  .section-wrap{padding:75px 6vw}
+  .help{grid-template-columns:1fr}
+  .system-grid{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr 1fr}
+  .flow-item{border-right:0;border-bottom:1px solid var(--dark-line)}
+  .flow-item:after{display:none}
+  .system-card ul{grid-template-columns:1fr}
+  .faq-grid{grid-template-columns:1fr}
+  .footer{display:block}
+  .footer span{display:block;margin-top:8px}
+}
+@media(max-width:520px){
+  .back-button{padding:9px 10px}
+  .brand{font-size:10px}
+  .brand-mark{width:30px;height:30px}
+  .hero{min-height:75vh}
+  .flow{grid-template-columns:1fr}
+  .system-card{padding:28px}
+  .system-card h3{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="brand" href="uiindex.html"><span class="brand-mark">V</span><span>Payment Management</span></a>
+  <div class="nav-right"><span>Vendor Services</span><a href="uiindex.html" class="back-button">← Dashboard</a></div>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="kicker">University of Idaho · Payment Processing & Vendor Management</div>
+    <h1>Payments & Vendor <span>Services</span></h1>
+    <div class="hero-bottom">
+      <p class="hero-intro">An overview of University payment processes for vendors, students, guest speakers, participants, and non-employees, including PaymentWorks onboarding and common payment methods.</p>
+      <div class="hero-number">05</div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="section-wrap systems">
+  <div class="section-inner">
+    <div class="section-label">01 / Categories</div>
+    <h2 class="section-title">Payment Categories</h2>
+    <p class="section-copy">Review the requirements and processing guidelines for different types of university payments and vendor classifications.</p>
+
+    <div class="system-grid">
+      <article class="system-card">
+        <span class="system-num">01</span>
+        <span class="system-tag">Vendors</span>
+        <h3>New Vendors</h3>
+        <p>Organizations or individuals providing goods or services.</p>
+        <ul>
+          <li>PaymentWorks registration</li>
+          <li>Submit tax documentation</li>
+          <li>Select ACH or mailed check</li>
+          <li>Record created prior to payment</li>
+        </ul>
+      </article>
+
+      <article class="system-card">
+        <span class="system-num">02</span>
+        <span class="system-tag">Support</span>
+        <h3>Student Stipends</h3>
+        <p>Payments supporting participation in University activities.</p>
+        <ul>
+          <li>Program participation</li>
+          <li>Research support</li>
+          <li>Training opportunities</li>
+          <li>Department approval</li>
+        </ul>
+      </article>
+
+      <article class="system-card">
+        <span class="system-num">03</span>
+        <span class="system-tag">Speakers</span>
+        <h3>Honoraria</h3>
+        <p>Payments to guest speakers or presenters.</p>
+        <ul>
+          <li>Guest lectures</li>
+          <li>Workshop presenters</li>
+          <li>Cultural presentations</li>
+          <li>Documentation required</li>
+        </ul>
+      </article>
+
+      <article class="system-card">
+        <span class="system-num">04</span>
+        <span class="system-tag">Expenses</span>
+        <h3>Reimbursements</h3>
+        <p>Repayment for approved University expenses.</p>
+        <ul>
+          <li>Original receipts</li>
+          <li>Business purpose</li>
+          <li>Supervisor approval</li>
+          <li>Processed via system</li>
+        </ul>
+      </article>
+
+      <article class="system-card">
+        <span class="system-num">05</span>
+        <span class="system-tag">Invoicing</span>
+        <h3>Invoices</h3>
+        <p>Payments submitted by vendors for completed work.</p>
+        <ul>
+          <li>Invoice required</li>
+          <li>Purchase Order as needed</li>
+          <li>Department approval</li>
+          <li>Accounts Payable processing</li>
+        </ul>
+      </article>
+
+      <article class="system-card">
+        <span class="system-num">06</span>
+        <span class="system-tag">Incentives</span>
+        <h3>Participant Payments</h3>
+        <p>Payments to individuals participating in approved activities.</p>
+        <ul>
+          <li>Research participants</li>
+          <li>Program incentives</li>
+          <li>Community engagement</li>
+          <li>Documentation required</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section-wrap dark">
+  <div class="section-inner">
+    <div class="section-label">02 / Onboarding</div>
+    <h2 class="section-title">PaymentWorks Process</h2>
+    <p class="section-copy">Follow this step-by-step workflow to request, invite, and approve new vendors before issuing any payments.</p>
+    <div class="flow">
+      <div class="flow-item"><span class="n">01</span><h4>Request Setup</h4><p>Department requests vendor setup.</p></div>
+      <div class="flow-item

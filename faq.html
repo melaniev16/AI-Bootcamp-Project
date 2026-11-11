@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Policies Guide | Policy Intelligence Portal</title>
+<style>
+:root{
+  --gold:#FFBA00;
+  --black:#000000;
+  --silver:#808080;
+  --white:#FFFFFF;
+  --ink:#171717;
+  --paper:#F4F3F0;
+  --line:rgba(0,0,0,.13);
+  --dark-line:rgba(255,255,255,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--paper);color:var(--ink);line-height:1.6}
+a{color:inherit}
+
+/* NAV */
+.site-nav{position:absolute;z-index:10;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;padding:26px 5vw;color:#fff;border-bottom:1px solid rgba(255,255,255,.16)}
+.brand{display:flex;align-items:center;gap:13px;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}
+.brand-mark{width:34px;height:34px;border:2px solid var(--gold);display:grid;place-items:center;color:var(--gold);font-weight:900;font-size:14px}
+.nav-right{display:flex;align-items:center;gap:18px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.back-button{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;background:var(--gold);color:#000;text-decoration:none;font-weight:900;transition:.2s}
+.back-button:hover{background:#fff;transform:translateY(-1px)}
+
+/* HERO */
+.hero{min-height:72vh;background:radial-gradient(circle at 78% 28%,rgba(255,186,0,.15),transparent 28%),linear-gradient(135deg,#050505 0%,#111 56%,#191919 100%);color:#fff;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:150px 5vw 75px}
+.hero:after{content:"";position:absolute;width:42vw;height:42vw;border:1px solid rgba(255,186,0,.18);right:-15vw;top:10vw;transform:rotate(18deg)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:80px 80px;mask-image:linear-gradient(to bottom,black,transparent)}
+.hero-content{position:relative;z-index:2;max-width:1100px}
+.kicker{color:var(--gold);font-size:12px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;margin-bottom:22px}
+.hero h1{font-size:clamp(3.5rem,8vw,8rem);line-height:.88;letter-spacing:-.07em;margin:0;max-width:1000px;text-transform:uppercase}
+.hero h1 span{display:block;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.65)}
+.hero-bottom{margin-top:45px;display:flex;justify-content:space-between;gap:40px;align-items:flex-end;max-width:1000px}
+.hero-intro{max-width:600px;font-size:18px;color:#d7d7d7}
+.hero-number{font-size:clamp(4rem,8vw,7rem);font-weight:900;color:var(--gold);line-height:.8;opacity:.9}
+
+/* CONTENT */
+.section-wrap{padding:110px 5vw}
+.section-wrap.dark{background:#050505;color:#fff}
+.section-inner{max-width:1200px;margin:auto}
+.section-label{display:flex;align-items:center;gap:15px;color:var(--gold);font-size:12px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;margin-bottom:28px}
+.section-label:after{content:"";height:1px;background:currentColor;width:70px;opacity:.6}
+.section-title{font-size:clamp(2.5rem,5vw,5rem);line-height:.95;letter-spacing:-.055em;margin:0 0 28px;text-transform:uppercase;max-width:900px}
+.section-copy{max-width:720px;font-size:18px;color:#626262}
+.dark .section-copy{color:#b9b9b9}
+
+/* CARDS GRID (Systems / Categories) */
+.system-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:55px}
+.system-card{background:var(--paper);min-height:310px;padding:36px;position:relative;transition:.25s;overflow:hidden}
+.system-card:before{content:"";position:absolute;left:0;top:0;width:0;height:5px;background:var(--gold);transition:.25s}
+.system-card:hover{background:#fff;transform:translateY(-3px);z-index:2}
+.system-card:hover:before{width:100%}
+.system-num{font-size:12px;font-weight:900;color:var(--silver);letter-spacing:.16em}
+.system-card h3{font-size:26px;letter-spacing:-.045em;margin:35px 0 8px;text-transform:uppercase}
+.system-card p{color:#5e5e5e;max-width:460px}
+.system-card ul{margin:22px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px;color:#333;font-size:14px}
+.system-card li:before{content:"→";color:var(--gold);font-weight:900;margin-right:8px}
+.system-tag{position:absolute;right:28px;top:30px;border:1px solid #bbb;padding:5px 8px;font-size:9px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;color:#666}
+
+/* CHROME RIVER SPECIAL DISPLAY */
+.feature-box{background:#fff;border:1px solid var(--line);padding:45px;margin-top:55px;box-shadow:0 4px 12px rgba(0,0,0,.04)}
+.feature-box p{font-size:17px;color:#444;max-width:800px;margin-bottom:30px}
+
+/* FAQ & RESOURCES GRID */
+.faq-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px;margin-top:55px}
+.faq-box{background:#fff;padding:35px;border-left:4px solid var(--gold);box-shadow:0 4px 12px rgba(0,0,0,.04)}
+.faq-box h3{font-size:22px;margin-top:0;text-transform:uppercase;letter-spacing:-.02em}
+.faq-box ul{margin:20px 0 0;padding-left:20px;color:#333}
+.faq-box li{margin-bottom:12px;font-size:15px}
+
+/* HELP */
+.help{display:grid;grid-template-columns:1.3fr .7fr;gap:70px;align-items:end}
+.help-panel{background:#000;color:#fff;padding:45px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between}
+.help-panel h3{font-size:28px;text-transform:uppercase;letter-spacing:-.03em;margin:0}
+.help-panel p{color:#aaa;max-width:560px}
+.button{display:inline-flex;align-items:center;gap:10px;width:max-content;background:var(--gold);color:#000;padding:13px 19px;text-decoration:none;font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.button:hover{background:#000;color:#fff}
+
+.footer{background:#000;color:#777;padding:28px 5vw;font-size:11px;display:flex;justify-content:space-between;gap:20px;text-transform:uppercase;letter-spacing:.08em}
+.footer strong{color:#fff}
+
+@media(max-width:850px){
+  .site-nav{padding:20px}
+  .nav-right span{display:none}
+  .hero{min-height:70vh;padding:130px 6vw 55px}
+  .hero h1{font-size:clamp(3.2rem,14vw,6rem)}
+  .hero-bottom{display:block}
+  .hero-number{margin-top:45px}
+  .section-wrap{padding:75px 6vw}
+  .help{grid-template-columns:1fr}
+  .system-grid{grid-template-columns:1fr}
+  .system-card ul{grid-template-columns:1fr}
+  .faq-grid{grid-template-columns:1fr}
+  .footer{display:block}
+  .footer span{display:block;margin-top:8px}
+}
+@media(max-width:520px){
+  .back-button{padding:9px 10px}
+  .brand{font-size:10px}
+  .brand-mark{width:30px;height:30px}
+  .hero{min-height:75vh}
+  .system-card{padding:28px}
+  .system-card h3{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a class="brand" href="uiindex.html"><span class="brand-mark">V</span><span>Travel Portal</span></a>
+  <div class="nav-right"><span>Policy Reference</span><a href="uiindex.html" class="back-button">← Dashboard</a></div>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="kicker">University of Idaho · Travel & Expense Systems Reference Portal</div>
+    <h1>Travel Policies <span>Guide</span></h1>
+    <div class="hero-bottom">
+      <p class="hero-intro">Guidance on University travel policies, procedures, and systems ensuring compliance with state regulations, sponsor requirements, and institutional standards.</p>
+      <div class="hero-number">04</div>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="section-wrap">
+  <div class="section-inner">
+    <div class="section-label">01 / Overview</div>
+    <h2 class="section-title">Travel Process Overview</h2>
+    <p class="section-copy">Understand each stage of the official institutional travel workflow, from initial planning to final expense report submission.</p>
+
+    <div class="system-grid">
+      <article class="system-card">
+        <span class="system-num">01</span>
+        <span class="system-tag">Planning</span>
+        <h3>Travel Planning</h3>
+        <p>Initial preparation and fund allocation for upcoming trips.</p>
+        <ul>
+          <li>Define purpose of travel</li>
+          <li>Identify funding source</li>
+          <li>Estimate costs</li>
+          <li>Review restrictions</li>
+        </ul>
+      </article>
+
+      <article class="system-card">
+        <span class="system-num">02</span>
+        <span class="system-tag">Authorization</span>
+        <h3>Travel Authorization</h3>
+        <p>Pre-trip approval documentation and itinerary submission.</p>
+        <ul>
+          <li>Traveler details</li>
+          <li>Destination & dates</li>
+          <li>Business purpose</li>
+          <li>Estimated expenses</li>
+        </ul>
+      </article>
+
+      <article class="system-card">
+        <span class="system-num">03</span>
+        <span class="system-tag">Arrangements</span>
+        <h3>Travel Arrangements</h3>
+        <p>Booking official transportation and accommodations.</p>
+        <ul>
+          <li>Airfare</li>
+          <li>Lodging</li>
+          <li>Conference registration</li>
+          <li>Ground transportation</li>
+        </ul>
+      </article>
+
+      <article class="system-card">
+        <span class="system-num">04</span>
+        <span class="system-tag">Reporting</span>
+        <h3>Expense Reporting</h3>
+        <p>Post-trip documentation and financial reconciliation.</p>
+        <ul>
+          <li>Itemized receipts</li>
+          <li>Business purpose</li>
+          <li>Mileage logs</li>
+          <li>Lodging documentation</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section-wrap dark">
+  <div class="section-inner">
+    <div class="section-label">02 / Systems</div>
+    <h2 class="section-title">Chrome River System</h2>
+    <p class="section-copy">Chrome River is the University's primary travel and expense management platform used for authorizations, reimbursements, and expense reporting.</p>
+
+    <div class="system-grid" style="background:var(--dark-line); border-color:var(--dark-line); margin-top:45px;">
+      <article class="system-card" style="background:#111; color:#fff;">
+        <span class="system-num" style="color:var(--gold);">01</span>
+        <span class="system-tag" style="border-color:#444; color:#aaa;">System Uses</span>
+        <h3 style="color:#fff;">Common Uses</h3>
+        <p style="color:#bbb;">Primary actions performed within the Chrome River interface.</p>
+        <ul style="color:#ddd;">
+          <li>Travel authorizations</li>
+          <li>Expense reports</li>
+          <li>Mileage reimbursement</li>
+          <li>P-Card reconciliation</li>
+        </ul>
+      </article>
+
+      <article class="system-card" style="background:#111; color:#fff;">
+        <span class="system-num" style="color:var(--gold);">02</span>
+        <span class="system-tag" style="border-color:#444; color:#aaa;">Compliance</span>
+        <h3 style="color:#fff;">Important Notes</h3>
+        <p style="color:#bbb;">Key policy reminders for smooth processing and approval.</p>
+        <ul style="color:#ddd;">
+          <li>Submit within policy deadlines</li>
+          <li>Attach itemized receipts</li>
+          <li>Confirm fund availability</li>
+          <li>Verify per diem rates</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section-wrap">
+  <div class="section-inner help">
+    <div>
+      <div class="section-label">03 / Need assistance?</div>
+      <h2 class="section-title">Questions about travel?</h2>
+      <p class="section-copy">Contact your department travel coordinator or the central travel office for assistance with complex itineraries or policy questions.</p>
+    </div>
+    <div class="help-panel">
+      <div>
+        <h3>Return to portal</h3>
+        <p>Use the main Policy Intelligence Portal to navigate between financial policies, enterprise systems, and travel resources.</p>
+      </div>
+      <a class="button" href="uiindex.html">← Back to Dashboard</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <strong>University of Idaho</strong>
+  <span>Travel Policies Guide · Policy Intelligence Portal</span>
+</footer>
+</body>
+</html>

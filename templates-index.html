@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University of Idaho Policies and Information</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>University of Idaho Policies and Information</h1>
+        <nav>
+            <ul id="nav-buttons">
+                <li><a href="#financial">Financial Policy</a></li>
+                <li><a href="#travel">Travel Policy</a></li>
+                <li><a href="#systems">Enterprise Systems</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="content-wrapper">
+        <div class="centered-content">
+            <section id="financial">
+                <h2>Financial Policy</h2>
+                <p><a href="{{ url_for('uploaded_file', filename='financial_policy.pdf') }}">View Financial Policy</a></p>
+            </section>
+            <section id="travel">
+                <h2>Travel Policy</h2>
+                <p><a href="{{ url_for('uploaded_file', filename='travel_policy.pdf') }}">View Travel Policy</a></p>
+            </section>
+            <section id="systems">
+                <h2>Enterprise Systems</h2>
+                <p><a href="{{ url_for('uploaded_file', filename='enterprise_systems.pdf') }}">View Enterprise Systems Information</a></p>
+            </section>
+            <section id="faq">
+                <h2>Frequently Asked Questions</h2>
+                <p>FAQ content will go here.</p>
+            </section>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 University of Idaho</p>
+    </footer>
+
+    <form action="/upload" method="post" enctype="multipart/form-data" style="display:none;">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>
